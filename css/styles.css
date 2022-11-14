@@ -15,6 +15,9 @@
   --icons-social-bg: rgba(255, 255, 255, 0.1);
 
   --project-item-gap: 30px;
+
+  --anim-dur: 250ms;
+  --anim-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* рамки елементів
@@ -85,6 +88,9 @@ header {
   font-size: 14px;
   line-height: 1.14;
   letter-spacing: 0.02em;
+
+  transition: color var(--anim-dur) var(--anim-function);
+
 }
 
 .site-nav .link:hover,
@@ -112,6 +118,23 @@ header .container {
   align-items: center;
   justify-content: space-between;
 }
+
+.site-nav .link{
+  position: relative;
+}
+
+ .current::after {
+display: inline-block;
+content: "";
+
+position: absolute;
+bottom: -1px;
+left: 0;
+height: 4px;
+width: 100%;
+border-radius: 2px;
+background-color: var(--accent-color);
+}
 /* контакти */
 
 .contacts .link {
@@ -125,6 +148,8 @@ header .container {
   letter-spacing: 0.02em;
   width: 100%;
   height: 100%;
+
+    transition: color var(--anim-dur) var(--anim-function);
 }
 
 .contacts .icon {
@@ -236,6 +261,8 @@ p {
   line-height: 1.88;
 
   letter-spacing: 0.06em;
+
+    transition: background-color var(--anim-dur) var(--anim-function);
 }
 
  .hero-button:hover,
@@ -295,6 +322,32 @@ p {
   justify-content: space-between;
 }
 
+.works-list .item {
+  position: relative;
+}
+
+.our-works .overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  margin: 0;
+  padding: 27px 0px;
+  background-color: rgba(47, 48, 58, 0.8);
+      
+}
+
+.our-works .descr {
+  font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.14;
+    letter-spacing: 0.03em;
+    text-transform: uppercase; 
+    text-align: center;
+  
+    color: #FFFFFF;  
+}
 /* секція Team */
 
 .team {
@@ -356,6 +409,10 @@ p {
   color: var(--icons-social);
   width: 100%;
   height: 100%;
+
+    transition: background-color var(--anim-dur) var(--anim-function),
+    color var(--anim-dur) var(--anim-function);
+    
 }
 
 .tm-social .link:hover,
@@ -383,6 +440,8 @@ p {
   height: 92px;
   border: 1px solid var(--icons-social);
   border-radius: 4px;
+
+    transition: color 1000ms var(--anim-function);
 }
 
 .clients .item:hover,
@@ -398,7 +457,11 @@ p {
     color: var(--icons-social);
     width: 100%;
     height: 100%;
-}
+
+  transition: background-color var(--anim-dur) var(--anim-function),
+    color var(--anim-dur) var(--anim-function);
+  }
+
 .clients .link:hover,
 .clients .link:focus {
   color: var(--accent-color);
@@ -438,6 +501,10 @@ p {
   font-style: normal;
   font-size: 14px;
   line-height: 1.5;
+}
+
+.contacts-bottom .link {
+    transition: color var(--anim-dur) var(--anim-function);
 }
 
 .btm-item {
@@ -496,6 +563,7 @@ p {
   border-radius: 50%;
   background-color: var(--icons-social-bg);
 
+  overflow: hidden;
 }
 
 .social-block .link {
@@ -505,6 +573,10 @@ p {
   color: var(--icons-social-secondary);
   width: 100%;
   height: 100%;
+
+      transition: background-color var(--anim-dur) var(--anim-function);
+
+  
 }
 
 .social-block .link:hover,
@@ -515,6 +587,79 @@ p {
 
 .social-block .icon {
   fill: currentColor;
+}
+
+/* модальне вікно */
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+
+  opacity: 1;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 581px;
+    width: 528px;
+
+  background: #FFFFFF;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+
+    transform: translate(-50%, -50%) scale(1);
+    transition: transform var(--anim-dur) var(--anim-function);
+}
+
+.backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(0.6);
+  transition: transform 1000ms var(--anim-function);
+}
+
+.modal-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: #FFFFFF;
+}
+
+.modal-btn::before,
+.modal-btn::after {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 15.5px;
+  height: 2px;
+  background: #000;
+}
+
+.modal-btn::before {
+  transform: rotate(45deg);
+}
+
+.modal-btn::after {
+  transform: rotate(-45deg);
+}
+
+.modal-btn:hover,
+.modal-btn:active {
+  border: 1px solid #000000;
 }
 
 /* оформлення Портфоліо */
@@ -540,6 +685,9 @@ p {
   cursor: pointer;
 
   font-family: inherit;
+
+        transition: background-color var(--anim-dur) var(--anim-function),
+  color var(--anim-dur) var(--anim-function);
 }
 
 .filter .button:hover,
@@ -569,6 +717,7 @@ p {
 }
 
 .project-item {
+  position: relative;
   cursor: pointer;
 
   flex-basis: calc(100% / 3 - var(--project-item-gap));
@@ -578,12 +727,57 @@ p {
 
 .project-item .link {
   display: block;
+  transition: box-shadow var(--anim-dur) var(--anim-function);
 }
 
-.project-item .link:hover {
+.project-item .link:hover,
+.project-item .link:focus {
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
-    1px 4px 6px rgba(0, 0, 0, 0.16);
+    1px 4px 6px rgba(0, 0, 0, 0.16);   
 }
+
+.project-item .overlay {
+      position: absolute;
+      top: 0;
+        right: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+
+  transform: translateY(100%);
+  width: 100%;
+  height: 294px;
+ 
+    padding: 63px 24px;
+  background-color: rgba(33, 150, 243, 0.9);
+  margin: 0;
+
+  transition: transform var(--anim-dur) var(--anim-function);
+}
+
+.overlay-box {
+  position: relative;
+    display: block;
+    overflow: hidden;
+}
+
+.project-item:hover .overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.project-item .overlay-text {
+  text-align: left;
+  font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.5;
+
+    letter-spacing: 0.03em;
+    color: #FFFFFF;
+}
+
 
 .projects-list .title {
   font-weight: 700;
