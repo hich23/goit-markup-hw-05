@@ -328,10 +328,13 @@ p {
 
 .our-works .overlay {
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   bottom: 0;
   width: 100%;
+  height: 70px;
   margin: 0;
-  padding: 27px 0px;
   background-color: rgba(47, 48, 58, 0.8);
       
 }
@@ -344,7 +347,6 @@ p {
     line-height: 1.14;
     letter-spacing: 0.03em;
     text-transform: uppercase; 
-    text-align: center;
   
     color: #FFFFFF;  
 }
@@ -597,8 +599,13 @@ p {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.2);
-
   opacity: 1;
+  transition: opacity var(--anim-dur) var(--anim-function);
+}
+
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(0.6);
+  transition: transform var(--anim-dur) var(--anim-function);
 }
 
 .modal {
@@ -606,25 +613,17 @@ p {
   top: 50%;
   left: 50%;
   height: 581px;
-    width: 528px;
-
+  width: 528px;
   background: #FFFFFF;
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
-    border-radius: 4px;
-
-    transform: translate(-50%, -50%) scale(1);
-    transition: transform var(--anim-dur) var(--anim-function);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform var(--anim-dur) var(--anim-function);
 }
 
 .backdrop.is-hidden {
   opacity: 0;
   pointer-events: none;
-  visibility: hidden;
-}
-
-.backdrop.is-hidden .modal {
-  transform: translate(-50%, -50%) scale(0.6);
-  transition: transform 1000ms var(--anim-function);
 }
 
 .modal-btn {
@@ -740,19 +739,19 @@ p {
       position: absolute;
       top: 0;
         right: 0;
-  opacity: 0;
+  opacity: 1;
   pointer-events: none;
   position: absolute;
 
-  transform: translateY(100%);
   width: 100%;
   height: 294px;
- 
-    padding: 63px 24px;
+  padding: 63px 24px;
   background-color: rgba(33, 150, 243, 0.9);
   margin: 0;
 
+  transform: translateY(100%);
   transition: transform var(--anim-dur) var(--anim-function);
+  
 }
 
 .overlay-box {
@@ -764,6 +763,7 @@ p {
 .project-item:hover .overlay {
   opacity: 1;
   transform: translateY(0);
+  transition: transform var(--anim-dur) var(--anim-function);
 }
 
 .project-item .overlay-text {
